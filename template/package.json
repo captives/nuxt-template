@@ -1,14 +1,14 @@
 {
-    "name": "nuxt-template",
+    "name": "{{ name }}",
     "version": "1.0.0",
-    "description": "nuxt template",
-    "author": "nuxt",
+    "description": "{{ description }}",
+    "author": "{{ author }}",
     "private": true,
     "scripts": {
-        "dev": "nuxt",
-        "build": "nuxt build",
-        "start": "nuxt start",
-        "generate": "nuxt generate",
+        "dev": "cross-env  nuxt",
+        "start": "cross-env  nuxt start",
+        "build": "cross-env NODE_MODE=prod nuxt build",
+        "generate": "cross-env NODE_MODE=prod nuxt generate",
         "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
         "precommit": "npm run lint"
     },
@@ -19,6 +19,7 @@
     "devDependencies": {
         "babel-eslint": "^8.2.1",
         "babel-plugin-import": "^1.8.0",
+        "cross-env": "^7.0.3",
         "eslint": "^7.30.0",
         "eslint-friendly-formatter": "^4.0.1",
         "eslint-loader": "^4.0.2",

@@ -1,12 +1,10 @@
 <template>
-    <jr-container class="home">
-        <jr-col :span="10">
-            <div class="logo">
-                <img src="/icon.png" />
-            </div>
-            <p>Home Page</p>
-        </jr-col>
-    </jr-container>
+    <jr-main class="home">
+        <div class="logo">
+            <img src="/icon.png" />
+        </div>
+        <p>Home Page</p>
+    </jr-main>
 </template>
 <script>
 export default {
@@ -15,6 +13,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 .home {
-    background: red;
+    text-align: center;
 }
 </style>
