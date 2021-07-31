@@ -3,7 +3,6 @@
         <div class="logo">
             <img src="/icon.png" />
         </div>
-        <p>Home Page</p>
     </jr-main>
 </template>
 <script>

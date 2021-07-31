@@ -1,11 +1,6 @@
 const env = require('./config');
-const plugins = [
-    ['import', {
-        libraryName: 'manage-ui-components',
-        libraryDirectory: 'lib',
-        camel2DashComponentName: false
-    }]
-];
+
+const plugins = [];
 
 if (env.mode === 'production') {
     plugins.push(["transform-remove-console", { "exclude": ["error", "warn"] }]);
@@ -53,9 +48,7 @@ module.exports = {
     // Build Configuration: https://go.nuxtjs.dev/config-build
     build: {
         babel: { plugins },
-        vendor: [
-            '~/plugins/manage-ui-components.js'
-        ],
         extractCSS: true,
+        minimize: true,
     }
 }

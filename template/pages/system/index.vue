@@ -1,8 +1,7 @@
 <template>
     <jr-main>
         这是设置页面
-        {{ list }}
-        <hr />
+        {{ menus }}
         <ul>
             <li v-for="(item, key) in data" :key="key" @click="clickHandler(item)">{{ item }}</li>
         </ul>
@@ -11,12 +10,12 @@
     </jr-main>
 </template>
 <script>
-import { navList, navData, setActive } from "./../../layouts/nav-list.js";
+import { menus, data, setActive } from "~/layouts/main-menu";
 export default {
     data() {
         return {
-            list: navList,
-            data: navData,
+            menus,
+            data,
         };
     },
     methods: {
@@ -24,7 +23,7 @@ export default {
             this.$set(item, "disabled", !(item.disabled || false));
         },
         selectHandler() {
-            setActive();
+            setActive("/system");
         },
     },
 };

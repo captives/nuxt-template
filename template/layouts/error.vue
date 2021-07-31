@@ -12,7 +12,7 @@
         <h1 style="font-size: 5cm">{{ error.statusCode }}</h1>
         <p>{{ error.message }}</p>
         <hr />
-        <!-- <p>{{ error }}</p> -->
+        <p>{{ error }}</p>
         <a v-if="typeof $route === 'undefined'" class="error-link" href="/">返回首页</a>
         <template v-else>
             <nuxt-link class="error-link" to="/">返回首页</nuxt-link>
@@ -26,18 +26,18 @@ export default {
     props: {
         error: {
             type: Object,
-            default: null,
+            default: () => {},
         },
     },
-    layout(context) {
-        let layout = "default";
-        let nuxt = process.server ? context.app.nuxt : $nuxt.nuxt;
-        if (nuxt.err && nuxt.err.statusCode == 404) {
-            layout = "main";
-        } else {
-            layout = "default";
-        }
-        return layout;
-    },
+    // layout(context) {
+    //     let layout = "default";
+    //     let nuxt = process.server ? context.app.nuxt : $nuxt.nuxt;
+    //     if (nuxt.err && nuxt.err.statusCode == 404) {
+    //         layout = "main";
+    //     } else {
+    //         layout = "default";
+    //     }
+    //     return layout;
+    // },
 };
 </script>

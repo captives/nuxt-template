@@ -1,4 +1,4 @@
-import { navData, setActive } from './../layouts/nav-list.js';
+import { navData, setActive } from '~/layouts/main-menu.js';
 
 export default ({ app }) => {
     app.router.afterEach((to, from) => {

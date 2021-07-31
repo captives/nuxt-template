@@ -1,9 +1,9 @@
 <template>
-    <jr-fullscreen v-model="fullscreen" id="app" @change="fullChangeHandler">
+    <jr-fullscreen v-model="fullscreen" id="app">
         <jr-layout-swallow :sidebar-width="200">
             <jr-nav-bar :data="list" slot="sidebar" :default-active="selectPath" value-field="path" logo="/images/logo_white_360.png" @change="navChangeHandler"> </jr-nav-bar>
             <template slot="header">
-                <jr-breadcrumb separator-class="jr-icon-arrow-right">
+                <jr-breadcrumb separator="/">
                     <jr-breadcrumb-item :to="{ path: '/' }">首页</jr-breadcrumb-item>
                     <jr-breadcrumb-item>活动管理</jr-breadcrumb-item>
                     <jr-breadcrumb-item>活动列表</jr-breadcrumb-item>
@@ -11,22 +11,21 @@
                 </jr-breadcrumb>
 
                 <div class="el-layout-header__profile">
-                    <jr-tag>全屏</jr-tag>
-                    <jr-tag>退出</jr-tag>
-                    <jr-tag>登入</jr-tag>
+                    <jr-tag @click="fullscreen = !fullscreen">{{ fullscreen ? "常规" : "全屏" }}</jr-tag>
+                    <nuxt-link to="/login">
+                        <jr-tag type="danger">退出</jr-tag>
+                    </nuxt-link>
                 </div>
             </template>
             <jr-nav-top></jr-nav-top>
             <!-- 实际上这个地方，放置路由 -->
             <nuxt></nuxt>
         </jr-layout-swallow>
-        <jr-button type="danger" :class="['full-btn', fullscreen ? 'el-icon-news' : 'el-icon-full-screen']" @click="changeHandler"></jr-button>
     </jr-fullscreen>
 </template>
 
 <script>
-import { navList, selectPath } from "./nav-list.js";
-console.log(navList);
+import { data, selectPath } from "./main-menu.js";
 export default {
     validate({ params }) {
         console.log("layout", params);
@@ -35,7 +34,7 @@ export default {
     data() {
         return {
             fullscreen: false,
-            list: navList,
+            list: data,
         };
     },
     computed: {
@@ -47,18 +46,17 @@ export default {
         changeHandler() {
             this.fullscreen = !this.fullscreen;
         },
-        fullChangeHandler(full) {
-            this.$message({
-                type: "success",
-                message: full ? "进入全屏" : "退出全屏",
-            });
-        },
         navChangeHandler(a, b, c, d) {
             // console.log(a, b, c, d);
             this.$router.push(a);
         },
     },
-    created() {},
+    asyncData({ isDev, route, store, env, params, query, req, res, redirect, error }) {
+        console.log("asyncData");
+    },
+    beforeCreate() {
+        console.log("beforeCreate");
+    },
 };
 </script>
 <style lang="scss">
@@ -74,21 +72,21 @@ body {
     margin: 0;
     overflow: hidden;
 }
+
 * {
     padding: 0;
     margin: 0;
 }
+
 .el-fullscreen {
     background: #fff;
 
     .el-nav-bar {
         height: 100%;
     }
-}
 
-.full-btn {
-    position: absolute;
-    left: 10px;
-    bottom: 10px;
+    .el-layout-swallow > .el-layout-main {
+        overflow: auto;
+    }
 }
 </style>

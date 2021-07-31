@@ -44,5 +44,5 @@ $ npm run generate
   - 不存在路由`404`
   - 刷新后选中菜单
 - 部署
-  - 生产环境移除`console.error`和`console.warn`
+  - 生产环境只保留`console.error`和`console.warn`输出
 
